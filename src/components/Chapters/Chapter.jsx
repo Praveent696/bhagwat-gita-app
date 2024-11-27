@@ -3,26 +3,21 @@ import React, { useEffect, useState } from 'react'
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
-import { reset as resetVerse, addOrRemoveFavorite as addOrRemoveFavoriteVerse, fetchVerses } from  '../../features/verse/verseSlice';
+import { fetchVerses } from  '../../features/verse/verseSlice';
 
 function Chapter() {
   const [chapter, setChapter] = useState({});
   const [expendedAccordion, setExpendedAccordion] = useState('');
   const versesState = useSelector(state => state.verses);
   const chaptersState = useSelector(state => state.chapters);
+  let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
+  setChapter(chapterObj);
   const params = useParams();
   const { ch } = params;
   const dispatch = useDispatch();
   useEffect(() => {
     ch && dispatch(fetchVerses(ch));
-  }, [ch]);
-
-  useEffect(() => {
-    let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number == ch);
-    console.log(ch, chapterObj);
-    setChapter(chapterObj);
-  })
-  console.log(`Chapter Number`, params);
+  }, [ch, dispatch]);
 
   const handleAccordionClick = (key) => {
     if (expendedAccordion !== key || expendedAccordion === '' ) {
