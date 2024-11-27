@@ -18,7 +18,7 @@ function Chapter() {
     let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
     setChapter(chapterObj);
     ch && dispatch(fetchVerses(ch));
-  }, [ch, dispatch]);
+  }, [ch, dispatch, chaptersState]);
 
   const handleAccordionClick = (key) => {
     if (expendedAccordion !== key || expendedAccordion === '' ) {
