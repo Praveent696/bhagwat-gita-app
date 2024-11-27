@@ -13,9 +13,10 @@ function Chapter() {
   const params = useParams();
   const { ch } = params;
   const dispatch = useDispatch();
-  let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
-  setChapter(chapterObj);
+  
   useEffect(() => {
+    let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
+    setChapter(chapterObj);
     ch && dispatch(fetchVerses(ch));
   }, [ch, dispatch]);
 
