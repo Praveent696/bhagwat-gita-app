@@ -10,11 +10,11 @@ function Chapter() {
   const [expendedAccordion, setExpendedAccordion] = useState('');
   const versesState = useSelector(state => state.verses);
   const chaptersState = useSelector(state => state.chapters);
-  let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
-  setChapter(chapterObj);
   const params = useParams();
   const { ch } = params;
   const dispatch = useDispatch();
+  let chapterObj = chaptersState?.chapters?.find(x => x.chapter_number === Number(ch));
+  setChapter(chapterObj);
   useEffect(() => {
     ch && dispatch(fetchVerses(ch));
   }, [ch, dispatch]);
