@@ -1,6 +1,6 @@
 import './App.css';
 import { Routes, Route } from 'react-router'
-import { reset as resetChapters, addOrRemoveFavorite as addOrRemoveFavoriteChapter, fetchChapters } from '../src/features/chapter/chapterSlice';
+import { fetchChapters } from '../src/features/chapter/chapterSlice';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import ResponsiveAppBar from './common/ResponsiveAppBar';
@@ -17,7 +17,7 @@ function App() {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchChapters());
-  }, []);
+  }, [dispatch]);
 
   console.log(`chapters`, chapters);
   console.log(`verse`, verse);
